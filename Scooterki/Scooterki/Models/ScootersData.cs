@@ -38,6 +38,7 @@ namespace Scooterki.Models
 
         [DisplayName("Description")]
         [Required(ErrorMessage = "Add description!")]
+        [DataType(DataType.MultilineText)]
         [StringLength(250, MinimumLength = 10, ErrorMessage = "Description must be 50 to 250 words")]
         public string Description { get; set; }
 

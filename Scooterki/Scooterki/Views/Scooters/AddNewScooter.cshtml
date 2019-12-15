@@ -5,10 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddNewScooter</h2>
-
-
-<h2>Add Scooter</h2>
+<h2>Add new Scooter</h2>
 
 
 @using (Html.BeginForm())
@@ -53,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Description, 10,40, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -61,7 +58,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IsAvilable, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IsAvilable, new { htmlAttributes = new { @class = "form-control" } })
+                @{
+                    List<SelectListItem> listItems = new List<SelectListItem>();
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Yes",
+                        Value = "1"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "No",
+                        Value = "0"
+                    });
+                }
+                @Html.DropDownListFor(model => model.IsAvilable, listItems, "Select Status", new { @class = "custom-select" })
+                
                 @Html.ValidationMessageFor(model => model.IsAvilable, "", new { @class = "text-danger" })
             </div>
         </div>
