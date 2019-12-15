@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ScootersDataStoreContainer" CdmEntityContainer="ScootersDatabase">
+    <EntitySetMapping Name="Scooters_table">
+      <EntityTypeMapping TypeName="ScootersData.Scooters_table">
+        <MappingFragment StoreEntitySet="Scooters_table">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Power" ColumnName="Power" />
+          <ScalarProperty Name="Vmax" ColumnName="Vmax" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsAvilable" ColumnName="IsAvilable" />
+          <ScalarProperty Name="PictureSrc" ColumnName="PictureSrc" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
