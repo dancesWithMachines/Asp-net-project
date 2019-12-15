@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Scooterki.Models.Scooters_table>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Scooterki";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Scooter List</h2>
 
 <p>
     @Html.ActionLink("Add Scooter", "AddNewScooter")
@@ -28,7 +28,7 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsAvilable)
+            Avilability
         </th>
         <th></th>
     </tr>
@@ -65,7 +65,7 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Delete", "RemoveScooter", new { id = item.Id })
             </td>
         </tr>
     }

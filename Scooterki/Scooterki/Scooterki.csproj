@@ -283,6 +283,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Scooters\Index.cshtml" />
     <Content Include="Views\Scooters\AddNewScooter.cshtml" />
+    <Content Include="Views\Scooters\RemoveScooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

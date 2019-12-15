@@ -36,5 +36,29 @@ namespace Scooterki.Controllers
                 return View("AddNewScooter");
             }
         }
+
+        [HttpGet]
+        public ActionResult RemoveScooter(int id)
+        {
+            var scooterToDelete = db.Scooters_table.Find(id);
+            if (scooterToDelete==null)
+                return HttpNotFound();
+            else
+                return View(scooterToDelete);
+        }
+
+        [HttpPost, ActionName("RemoveScooter")]
+        public ActionResult RemovalConfirmed(int id)
+        {
+            var scooterToDelete = db.Scooters_table.Find(id);
+            if (scooterToDelete == null)
+                return HttpNotFound();
+            db.Scooters_table.Remove(scooterToDelete);
+            db.SaveChanges();
+            TempData["message"] = $"Removed scooter name: {scooterToDelete.Name}";
+            return RedirectToAction("Index");
+
+
+        }
     }
 }
