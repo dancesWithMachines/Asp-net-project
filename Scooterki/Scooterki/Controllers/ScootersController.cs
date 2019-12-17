@@ -60,5 +60,38 @@ namespace Scooterki.Controllers
 
 
         }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var scooterDetails = db.Scooters_table.Find(id);
+            if (scooterDetails == null)
+                return HttpNotFound();
+            else
+                return View(scooterDetails);
+        }
+
+        [HttpGet]
+        public ActionResult EditScooter(int id)
+        {
+            var modifiedScooter = db.Scooters_table.Find(id);
+            if (modifiedScooter == null)
+                return HttpNotFound();
+            else
+                return View(modifiedScooter);
+        }
+
+        [HttpPost]
+        public ActionResult EditScooter(Scooters_table editScooter)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(editScooter).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("index");
+            }
+            else
+                return View("EditScooter");
+        }
     }
 }

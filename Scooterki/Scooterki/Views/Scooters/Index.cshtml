@@ -37,7 +37,7 @@
     {
         <tr>
             <td>
-                <img src=@Html.DisplayFor(modelItem => item.PictureSrc) height=5% width=auto>
+                <img src=@Html.DisplayFor(modelItem => item.PictureSrc) height=75 width=auto>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -63,7 +63,7 @@
 
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Edit", "EditScooter", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "RemoveScooter", new { id = item.Id })
             </td>

@@ -1,19 +1,14 @@
 ﻿@model Scooterki.Models.Scooters_table
 
 @{
-    ViewBag.Title = "RemoveScooter";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Remove scooter</h2>
+<h2>Details</h2>
 
-@if (!Model.UserId.Equals(null))
-{
-    <h2><font color="red">This scooter is beeing reserved!!!</font></h2>
-}
-
-<h3>Are you sure you want to remove this scooter?</h3>
 <div>
+    <h4>Scooter details</h4>
     <hr />
     <dl class="dl-horizontal">
         <table width="100%"><tr><td width="50%">
@@ -85,7 +80,7 @@
         </td>
         <td width="100%">
         <dt>
-            Picture 
+            Picture
         </dt>
 
         <dd>
@@ -94,14 +89,8 @@
         </td>
         </tr></table>
     </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("No, take me home, country roads", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "EditScooter", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
