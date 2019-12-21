@@ -6,10 +6,11 @@
 }
 
 <h2>Edit selected Scooter</h2>
-@if (!Model.UserId.Equals(null))
-{
-    <h2><font color="red">This scooter is beeing reserved!!!</font></h2>
-}
+@*if (!Model.UserId.Equals(null))
+    {
+        <h2><font color="red">This scooter is beeing reserved!!!</font></h2>
+    }*@
+<h3>@Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })</h3>
 
 
 @using (Html.BeginForm())
@@ -92,15 +93,32 @@
                         </div>
                     </div>
 
-                </td>
-                <td width="100%" valign="top">
-                    <dt>
-                        Current picture
-                    </dt>
+                     <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.HiddenFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                     </div>
+                    
 
-                    <dd>
+                </td>
+                <td width="100%" valign="top">                                     
+                    @{ string isAnything = Html.DisplayFor(Model => Model.PictureSrc).ToString();}
+
+                    @if (isAnything != "")
+                    {
+                        <dt>
+                            Current picture
+                        </dt>
+                        <dd>
                         <img src=@Html.DisplayFor(model => model.PictureSrc) height=790 width=auto>
+                        </dd>
+                    }
+                    else
+                    {
+                    <dd>
+                        <img src="~/RAW/error.png" alt="Error" height=790 width=auto>
                     </dd>
+                    }
                 </td>
             </tr>
         </table>

@@ -7,6 +7,11 @@
 
 <h2>Remove scooter</h2>
 
+@if (TempData["message"] != null)
+{
+    <p class="alert-danger">@TempData["message"]</p>
+}
+
 @if (!Model.UserId.Equals(null))
 {
     <h2><font color="red">This scooter is beeing reserved!!!</font></h2>
@@ -85,7 +90,7 @@
         </td>
         <td width="100%">
         <dt>
-            Picture 
+            Picture
         </dt>
 
         <dd>

@@ -28,7 +28,7 @@ namespace Scooterki.Models
 
         [DisplayName("Max. speed")]
         [Required(ErrorMessage = "Add scooter's max speed!")]
-        [Range(1, 100, ErrorMessage = "Scooters can't have speed of above 100")]
+        [Range(1, 100, ErrorMessage = "Scooters can't have speed of above 100 or negative")]
         public int Vmax { get; set; }
 
         [DisplayName("Price")]
@@ -50,7 +50,8 @@ namespace Scooterki.Models
         [Required(ErrorMessage = "Add image source")]
         public string PictureSrc { get; set; }
 
-        [DisplayName("Usrsid")]
+        [DisplayName("UserId")]
+        [IsReserved]
         public Nullable<int> UserId { get; set; }
     }
 }

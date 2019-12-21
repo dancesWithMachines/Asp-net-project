@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (TempData["message"] != null)
+{
+    <p class="alert-success">@TempData["message"]</p>
+}
+
 <h2>Scooter List</h2>
 
 <p>
