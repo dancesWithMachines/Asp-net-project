@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,6 +10,33 @@ namespace Scooterki.Controllers
 {
     public class ScootersController : Controller
     {
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            var errorMessage = "";
+            var routingText = "Routing data: ";
+            var routing = filterContext.RouteData;
+
+            foreach (var element in routing.Values)
+                routingText += $"{element.Key} - {element.Value}, ";
+
+            errorMessage = routingText;
+            var ex = filterContext.Exception;
+            while (ex.InnerException != null)
+            {
+                ex = ex.InnerException;
+            }
+            errorMessage += $" Błąd: {ex.Message}";
+
+            var result = new ViewResult()
+            {
+                ViewName = "Błąd"
+            };
+            result.ViewBag.Message = errorMessage;
+
+            filterContext.Result = result;
+            filterContext.ExceptionHandled = true;
+        }
+
         ScootersDatabase db = new ScootersDatabase();
         // GET: Scooters
         public ActionResult Index()
@@ -69,34 +97,123 @@ namespace Scooterki.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var scooterDetails = db.Scooters_table.Find(id);
-            if (scooterDetails == null)
-                return HttpNotFound();
-            else
-                return View(scooterDetails);
+            try
+            {
+                var scooterDetails = db.Scooters_table.Find(id);
+                if (scooterDetails == null)
+                    return HttpNotFound();
+                else
+                    return View(scooterDetails);
+            }
+            catch (SqlException ex)
+            {
+                Exception lastException = ex;
+                while (lastException.InnerException != null)
+                {
+                    lastException = lastException.InnerException;
+                }
+
+                var sqlException = lastException as SqlException;
+                if (sqlException != null)
+                {
+                    switch (sqlException.Number)
+                    {
+                        case 4060:
+                            ViewBag.Message = "Błąd połączenia z bazą danych.";
+                            break;
+                        default:
+                            ViewBag.Message = lastException.Message;
+                            break;
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = lastException.Message;
+                }
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public ActionResult EditScooter(int id)
         {
-            var modifiedScooter = db.Scooters_table.Find(id);
-            if (modifiedScooter == null)
-                return HttpNotFound();
-            else
-                return View(modifiedScooter);
+            try
+            {
+                var modifiedScooter = db.Scooters_table.Find(id);
+                if (modifiedScooter == null)
+                    return HttpNotFound();
+                else
+                    return View(modifiedScooter);
+            }
+            catch (SqlException ex)
+            {
+                Exception lastException = ex;
+                while (lastException.InnerException != null)
+                {
+                    lastException = lastException.InnerException;
+                }
+
+                var sqlException = lastException as SqlException;
+                if (sqlException != null)
+                {
+                    switch (sqlException.Number)
+                    {
+                        case 4060:
+                            ViewBag.Message = "Błąd połączenia z bazą danych.";
+                            break;
+                        default:
+                            ViewBag.Message = lastException.Message;
+                            break;
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = lastException.Message;
+                }
+                return View("Error");
+            }
         }
 
         [HttpPost]
         public ActionResult EditScooter(Scooters_table editScooter)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(editScooter).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(editScooter).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("index");
+                }
+                else
+                    return View("EditScooter");
             }
-            else
-                return View("EditScooter");
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                Exception lastException = ex;
+                while (lastException.InnerException != null)
+                {
+                    lastException = lastException.InnerException;
+                }
+                var sqlException = lastException as System.Data.SqlClient.SqlException;
+                if (sqlException != null)
+                {
+                    switch (sqlException.Number)
+                    {
+                        case 4060:
+                            ViewBag.Message = "Błąd połączenia z bazą danych.";
+                            break;
+                        default:
+                            ViewBag.Message = lastException.Message;
+                            break;
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = lastException.Message;
+                }
+                return View("Error");
+            }
         }
     }
 }
