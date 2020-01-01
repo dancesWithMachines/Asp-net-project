@@ -10,5 +10,7 @@ namespace Scooterki
         {
             ConfigureAuth(app);
         }
+
+        
     }
 }

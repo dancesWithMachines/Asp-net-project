@@ -23,7 +23,7 @@ namespace Scooterki
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-superhero.css",
+                      "~/Content/bootstrap-sup3.css",
                       "~/Content/site.css"));
         }
     }

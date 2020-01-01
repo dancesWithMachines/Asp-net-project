@@ -213,6 +213,8 @@
     <Content Include="App_Data\Scooters_database_log.ldf">
       <DependentUpon>Scooters_database.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-sup2.css" />
+    <Content Include="Content\bootstrap-sup3.css" />
     <Content Include="Content\bootstrap-superhero.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

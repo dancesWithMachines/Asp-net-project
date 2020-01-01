@@ -163,7 +163,7 @@ namespace Scooterki.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Potwierdź konto", "Potwierdź konto, klikając <a href=\"" + callbackUrl + "\">tutaj</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("/", "Scooters");
                 }
                 AddErrors(result);
             }
@@ -392,7 +392,7 @@ namespace Scooterki.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("/", "Scooters");
         }
 
         //
@@ -449,7 +449,7 @@ namespace Scooterki.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("/", "Scooters");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
