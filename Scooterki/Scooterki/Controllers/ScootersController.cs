@@ -51,7 +51,7 @@ namespace Scooterki.Controllers
         public ActionResult RemovalConfirmed(int id)
         {
             var scooterToDelete = db.Scooters_table.Find(id);
-            if (scooterToDelete == null)
+            if (scooterToDelete.Equals(null))
                 return HttpNotFound();
             if (!scooterToDelete.UserId.Equals(null))
             {
