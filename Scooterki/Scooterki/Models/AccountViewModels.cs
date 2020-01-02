@@ -70,6 +70,10 @@ namespace Scooterki.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "UserRole")]
+        public string UserRole { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "{0} musi zawierać co najmniej następującą liczbę znaków: {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]

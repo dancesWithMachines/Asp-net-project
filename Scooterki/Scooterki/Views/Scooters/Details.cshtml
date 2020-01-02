@@ -1,4 +1,5 @@
 ﻿@model Scooterki.Models.Scooters_table
+ 
 
 @{
     ViewBag.Title = "Details";
@@ -66,9 +67,8 @@
                 <font color="green">YES</font>
             }
         </dd>
-
         <dt>
-            @if (!Model.UserId.Equals(null))
+            @if (Model.UserId!=null)
             {
                 @Html.DisplayNameFor(model => model.UserId)
             }

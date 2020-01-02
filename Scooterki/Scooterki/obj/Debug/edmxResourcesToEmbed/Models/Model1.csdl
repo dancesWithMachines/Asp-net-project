@@ -12,7 +12,7 @@
     <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="IsAvilable" Type="Byte" Nullable="false" />
     <Property Name="PictureSrc" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="UserId" Type="Int32" />
+    <Property Name="UserId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="true" />
   </EntityType>
   <EntityContainer Name="ScootersDatabase" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Scooters_table" EntityType="Self.Scooters_table" />

@@ -1,0 +1,129 @@
+﻿@model Scooterki.Models.Scooters_table
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Rent scooter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["message"] != null)
+{
+    <p class="alert-danger">@TempData["message"]</p>
+}
+
+<h2>Do you want to rent this scooter?</h2>
+@*if (!Model.UserId.Equals(null))
+    {
+        <h2><font color="red">This scooter is beeing reserved!!!</font></h2>
+    }*@
+<h3>@Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <div class="form-horizontal">
+        <table width="100%">
+            <tr>
+                <td width="50%">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                        @Html.HiddenFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Power)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Power)
+                        @Html.HiddenFor(model => model.Power, new { htmlAttributes = new { @class = "form-control" } })
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vmax)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Vmax)
+                        @Html.HiddenFor(model => model.Vmax, new { htmlAttributes = new { @class = "form-control" } })
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Price)
+                        @Html.HiddenFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                        @Html.HiddenFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IsAvilable)
+                    </dt>
+
+                    <dd>
+                        @if (Html.DisplayFor(model => model.IsAvilable).Equals(0))
+                        {
+                            <font color="red">NO</font>
+                        }
+                        else
+                        {
+                            <font color="green">YES</font>
+                        }
+                        @Html.HiddenFor(model => model.IsAvilable, new { Value=0 })
+                    </dd>
+
+                    <dt>
+                        @if (Html.DisplayFor(model => model.UserId).Equals(null))
+                        {
+                            @Html.DisplayNameFor(model => model.UserId)
+                        }
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserId)
+                        @Html.HiddenFor(model => model.UserId, new { Value = @User.Identity.GetUserName() })
+                    </dd>
+                </td>
+                <td width="100%">
+                    <dt>
+                        Picture
+                    </dt>
+
+                    <dd>
+                        <img src=@Html.DisplayFor(model => model.PictureSrc) height=300 width=auto>
+                        @Html.HiddenFor(model => model.PictureSrc, new { htmlAttributes = new { @class = "form-control" } })
+                    </dd>
+                </td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Rent" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Take me back", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Scooterki.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Scooterki.Controllers
 {
@@ -45,11 +46,13 @@ namespace Scooterki.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddNewScooter()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult AddNewScooter(Scooters_table newScooter)
         {
@@ -66,6 +69,7 @@ namespace Scooterki.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult RemoveScooter(int id)
         {
             var scooterToDelete = db.Scooters_table.Find(id);
@@ -76,6 +80,7 @@ namespace Scooterki.Controllers
         }
 
         [HttpPost, ActionName("RemoveScooter")]
+        [Authorize(Roles = "Admin")]
         public ActionResult RemovalConfirmed(int id)
         {
             var scooterToDelete = db.Scooters_table.Find(id);
@@ -135,6 +140,7 @@ namespace Scooterki.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditScooter(int id)
         {
             try
@@ -175,6 +181,7 @@ namespace Scooterki.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditScooter(Scooters_table editScooter)
         {
             try
@@ -215,5 +222,48 @@ namespace Scooterki.Controllers
                 return View("Error");
             }
         }
+
+        [HttpGet]
+        [Authorize(Roles = "User, Admin")]
+        public ActionResult RentScooter(int id)
+        {
+            var scooterToRent = db.Scooters_table.Find(id);
+            if (scooterToRent == null)
+                return HttpNotFound();
+            else if (scooterToRent.IsAvilable.Equals(0))
+            {
+                TempData["message"] = $"This scooter is unavilable";
+                return RedirectToAction("index");
+            }
+            else if (scooterToRent.UserId != null)
+            {
+                TempData["message"] = $"This scooter is reserved";
+                return RedirectToAction("index");
+            }
+            else
+                return View(scooterToRent);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "User, Admin")]
+        public ActionResult RentScooter(Scooters_table rentScooter)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(rentScooter).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("index");
+            }
+            else
+            {
+                TempData["message"] = $"Unknown error";
+                return View("RentScooter");
+            }
+        }
+
+
+
+
+        
     }
 }

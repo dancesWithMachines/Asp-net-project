@@ -22,6 +22,6 @@ namespace Scooterki.Models
         public string Description { get; set; }
         public byte IsAvilable { get; set; }
         public string PictureSrc { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -236,3 +236,6 @@ C:\Users\krzys\Documents\GitHub\Asp-net-project\Scooterki\Scooterki\obj\Debug\Sc
 C:\Users\krzys\Documents\GitHub\Asp-net-project\Scooterki\Scooterki\obj\Debug\Scooterki.csproj.CopyComplete
 C:\Users\krzys\Documents\GitHub\Asp-net-project\Scooterki\Scooterki\obj\Debug\Scooterki.dll
 C:\Users\krzys\Documents\GitHub\Asp-net-project\Scooterki\Scooterki\obj\Debug\Scooterki.pdb
+C:\Users\Timax\Documents\GitHub\Asp-net-project\Scooterki\Scooterki\obj\Debug\Scooterki.Migrations.InitialCreate.resources
+C:\Users\Timax\Documents\GitHub\Asp-net-project\Scooterki\Scooterki\obj\Debug\Scooterki.csproj.GenerateResource.cache
+C:\Users\Timax\Documents\GitHub\Asp-net-project\Scooterki\Scooterki\obj\Debug\Scooterki.Migrations.bruh.resources

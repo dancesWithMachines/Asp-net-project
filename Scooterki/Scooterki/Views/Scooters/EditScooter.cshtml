@@ -92,13 +92,25 @@
                             @Html.ValidationMessageFor(model => model.PictureSrc, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
+                    @if (Html.DisplayFor(model => model.UserId) == null)
+                    {
                      <div class="form-group">
                             <div class="col-md-10">
                                 @Html.HiddenFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                      </div>
-                    
+                    }
+                    else
+                    {
+                    <div class="form-group">
+                         @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                         <div class="col-md-10">
+                             @Html.EditorFor(model => model.UserId, 10, 40, new { htmlAttributes = new { @class = "form-control" } })<br />
+                             @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                         </div>
+                    </div>
+                    }
+
 
                 </td>
                 <td width="100%" valign="top">                                     

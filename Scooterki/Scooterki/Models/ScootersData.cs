@@ -52,6 +52,6 @@ namespace Scooterki.Models
 
         [DisplayName("UserId")]
         [IsReserved]
-        public Nullable<int> UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

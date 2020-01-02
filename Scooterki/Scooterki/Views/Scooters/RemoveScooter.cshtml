@@ -12,7 +12,7 @@
     <p class="alert-danger">@TempData["message"]</p>
 }
 
-@if (!Model.UserId.Equals(null))
+@if (Model.UserId!=null)
 {
     <h2><font color="red">This scooter is beeing reserved!!!</font></h2>
 }
@@ -78,7 +78,7 @@
         </dd>
 
         <dt>
-            @if (!Model.UserId.Equals(null))
+            @if (Model.UserId!=null)
             {
                 @Html.DisplayNameFor(model => model.UserId)
             }
