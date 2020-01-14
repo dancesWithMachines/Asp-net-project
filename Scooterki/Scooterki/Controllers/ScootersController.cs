@@ -86,7 +86,7 @@ namespace Scooterki.Controllers
             var scooterToDelete = db.Scooters_table.Find(id);
             if (scooterToDelete.Equals(null))
                 return HttpNotFound();
-            if (!scooterToDelete.UserId.Equals(null))
+            if (scooterToDelete.UserId!=null)
             {
                 TempData["message"] = $"Scooter is reserved, cannot delete nor modify";
                 return RedirectToAction("RemoveScooter");               
