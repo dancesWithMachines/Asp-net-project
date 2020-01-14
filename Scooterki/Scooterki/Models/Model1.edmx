@@ -13,7 +13,7 @@
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Power" Type="int" Nullable="false" />
           <Property Name="Vmax" Type="int" Nullable="false" />
-          <Property Name="Price" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="numeric" Precision="5" Scale="2" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="IsAvilable" Type="tinyint" Nullable="false" />
           <Property Name="PictureSrc" Type="varchar" MaxLength="300" Nullable="false" />
@@ -34,7 +34,7 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Power" Type="Int32" Nullable="false" />
           <Property Name="Vmax" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsAvilable" Type="Byte" Nullable="false" />
           <Property Name="PictureSrc" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />

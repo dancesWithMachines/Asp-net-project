@@ -71,7 +71,7 @@
                         Value = "0"
                     });
                 }
-                @Html.DropDownListFor(model => model.IsAvilable, listItems, "Select Status", new { @class = "custom-select" })<br />
+                @Html.DropDownListFor(model => model.IsAvilable, listItems, "Select Status", new { @class = "form-control" })<br />
                 
                 @Html.ValidationMessageFor(model => model.IsAvilable, "", new { @class = "text-danger" })
             </div>
