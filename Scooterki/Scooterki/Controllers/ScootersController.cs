@@ -30,7 +30,7 @@ namespace Scooterki.Controllers
 
             var result = new ViewResult()
             {
-                ViewName = "Błąd"
+                ViewName = "Error"
             };
             result.ViewBag.Message = errorMessage;
 
@@ -106,7 +106,7 @@ namespace Scooterki.Controllers
             {
                 var scooterDetails = db.Scooters_table.Find(id);
                 if (scooterDetails == null)
-                    return HttpNotFound();
+                    throw new HttpException(404, "Couldn't find scooter with this id");
                 else
                     return View(scooterDetails);
             }
@@ -147,7 +147,7 @@ namespace Scooterki.Controllers
             {
                 var modifiedScooter = db.Scooters_table.Find(id);
                 if (modifiedScooter == null)
-                    return HttpNotFound();
+                    throw new HttpException(404, "Couldn't find scooter with this id");
                 else
                     return View(modifiedScooter);
             }
@@ -229,7 +229,7 @@ namespace Scooterki.Controllers
         {
             var scooterToRent = db.Scooters_table.Find(id);
             if (scooterToRent == null)
-                return HttpNotFound();
+                throw new HttpException(404, "Couldn't find scooter with this id");
             else if (scooterToRent.IsAvilable.Equals(0))
             {
                 TempData["message"] = $"This scooter is unavilable";
